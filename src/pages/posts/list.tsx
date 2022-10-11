@@ -11,6 +11,7 @@ import {
     ShowButton,
     DeleteButton,
     getDefaultSortOrder,
+    DateField,
 } from "@pankod/refine-antd";
 
 import { IPost } from "../../interfaces";
@@ -27,6 +28,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
             fields: [
                 "id",
                 "name",
+                "gender",
+                "created_at",
+                "dateOfBirth",
             ],
         },
     });
@@ -44,6 +48,25 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     dataIndex="name"
                     title="Name"
                     sorter={{ multiple: 1 }}
+                />
+                <Table.Column
+                    dataIndex="gender"
+                    title="Gender"
+                    sorter={{ multiple: 1 }}
+                />
+                <Table.Column
+                    dataIndex="dateOfBirth"
+                    title="Date Of Birth"
+                    render={(value) => <DateField value={value} format="LLL" />}
+                    defaultSortOrder={getDefaultSortOrder("dateOfBirth", sorter)}
+                    sorter
+                />
+                <Table.Column
+                    dataIndex="created_at"
+                    title="Created At"
+                    render={(value) => <DateField value={value} format="LLL" />}
+                    defaultSortOrder={getDefaultSortOrder("created_at", sorter)}
+                    sorter
                 />
                 <Table.Column<IPost>
                     title="Actions"
@@ -68,6 +91,7 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                     fields: [
                                         "id",
                                         "name",
+                                        "gender",
                                     ],
                                 }}
                             />

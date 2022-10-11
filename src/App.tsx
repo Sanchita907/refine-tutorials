@@ -17,7 +17,7 @@ console.log(API_URL);
 
 const client = new GraphQLClient(API_URL, {
     headers: {
-        "x-hasura-role": "public",
+        "x-hasura-role": "admin",
     },
 });
 
@@ -30,7 +30,7 @@ const App: React.FC = () => {
             dataProvider={gqlDataProvider}
             resources={[
                 {
-                    name: "healthTech_patient",
+                    name: "healthTech_Patient",
                     list: PostList,
                     create: PostCreate,
                     edit: PostEdit,
