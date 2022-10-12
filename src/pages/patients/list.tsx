@@ -1,5 +1,5 @@
 import {
-    IResourceComponentsProps,
+    IResourceComponentsProps
 } from "@pankod/refine-core";
 
 import {
@@ -12,12 +12,13 @@ import {
     DeleteButton,
     getDefaultSortOrder,
     DateField,
+    useSelect,
 } from "@pankod/refine-antd";
 
-import { IPost } from "../../interfaces";
+import { IPatientAddress, IPatients } from "../../interfaces";
 
-export const PostList: React.FC<IResourceComponentsProps> = () => {
-    const { tableProps, sorter } = useTable<IPost>({
+export const PatientsList: React.FC<IResourceComponentsProps> = () => {
+    const { tableProps, sorter } = useTable<IPatients>({
         initialSorter: [
             {
                 field: "id",
@@ -31,9 +32,25 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                 "gender",
                 "created_at",
                 "dateOfBirth",
+                "existingHealthIssue",
+
+                {
+                    PatientAddress: ["area"]
+                }
+
             ],
         },
     });
+
+    // const { selectProps } = useSelect<IPatientAddress>({
+    //     resource: "healthTech_PatientAddress",
+    //     metaData: {
+    //         fields: [
+    //             "area",
+    //         ],
+    //     },
+    // });
+
 
     return (
         <List>
@@ -68,7 +85,19 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                     defaultSortOrder={getDefaultSortOrder("created_at", sorter)}
                     sorter
                 />
-                <Table.Column<IPost>
+                <Table.Column
+                    dataIndex="existingHealthIssue"
+                    title="Existing Health Issue"
+                    sorter={{ multiple: 1 }}
+                />
+                <Table.Column<IPatients>
+                    dataIndex="area"
+                    title="Area"
+                    render={(_, record) => record.PatientAddress.area}
+
+                />
+
+                <Table.Column<IPatients>
                     title="Actions"
                     dataIndex="actions"
                     render={(_, record) => (
@@ -92,6 +121,9 @@ export const PostList: React.FC<IResourceComponentsProps> = () => {
                                         "id",
                                         "name",
                                         "gender",
+                                        "created_at",
+                                        "dateOfBirth",
+                                        "existingHealthIssue",
                                     ],
                                 }}
                             />

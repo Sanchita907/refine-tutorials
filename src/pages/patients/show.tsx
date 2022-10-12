@@ -6,7 +6,7 @@ import {
     RefreshButton,
 } from "@pankod/refine-antd";
 
-import { IPost } from "../../interfaces";
+import { IPatients } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
@@ -18,7 +18,7 @@ export const PostShow: React.FC<IResourceComponentsProps> = () => {
         ],
     };
 
-    const { queryResult } = useShow<IPost>({
+    const { queryResult } = useShow<IPatients>({
         metaData,
     });
 
