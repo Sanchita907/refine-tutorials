@@ -10,7 +10,8 @@ import dataProvider, {
 } from "@pankod/refine-hasura";
 import "@pankod/refine-antd/dist/styles.min.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
+import { PostCreate, PostEdit, PostShow, PatientsList } from "./pages/patients";
+import { PatientsAddressList } from "./pages/PatientAddress/list";
 
 const API_URL = "http://localhost:8080/v1/graphql";
 console.log(API_URL);
@@ -30,11 +31,17 @@ const App: React.FC = () => {
             dataProvider={gqlDataProvider}
             resources={[
                 {
-                    name: "healthTech_Patient",
-                    list: PostList,
+                    
+                    name: "healthTech_Patients",
+                    list: PatientsList,
                     create: PostCreate,
                     edit: PostEdit,
                     show: PostShow,
+                },
+                {
+                    name: "healthTech_PatientAddress",
+                    list: PatientsAddressList,
+
                 }
             ]}
             notificationProvider={notificationProvider}

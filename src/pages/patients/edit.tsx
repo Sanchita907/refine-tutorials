@@ -12,13 +12,13 @@ import {
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
-import { IPost } from "../../interfaces";
+import { IPatients } from "../../interfaces";
 
 export const PostEdit: React.FC<IResourceComponentsProps> = () => {
     const { formProps, saveButtonProps, queryResult } = useForm<
-        IPost,
+        IPatients,
         HttpError,
-        IPost
+        IPatients
     >({
         metaData: {
             fields: [
